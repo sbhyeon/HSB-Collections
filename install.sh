@@ -21,6 +21,7 @@ mkdir -p /boot/grub/themes
 cp -r ./grub_themes/HSB-Collections /boot/grub/themes/
 
 echo "icon files.."
+mkdir -p /usr/share/icons
 cp -r ./icons/HSB-Collections /usr/share/icons/
 
 echo "plymouth theme files.."
