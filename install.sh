@@ -9,23 +9,26 @@ RUID=$(who | awk 'FNR == 1 {print $1}')
 
 echo "Copy gtk theme files ..."
 echo "background files.."
+mkdir -p /usr/share/backgrounds
 cp -r ./backgrounds/HSB-Collections /usr/share/backgrounds/
 
 echo "font files.."
+mkdir -p /usr/share/fonts/truetype
 cp -r ./fonts/HSB-Collections /usr/share/fonts/truetype/
 
 echo "grub theme files.."
+mkdir -p /boot/grub/themes
 cp -r ./grub_themes/HSB-Collections /boot/grub/themes/
 
 echo "icon files.."
 cp -r ./icons/HSB-Collections /usr/share/icons/
 
 echo "plymouth theme files.."
-apt update
-apt install -y plymouth-themes
+mkdir -p /usr/share/plymouth/themes
 cp -r ./plymouth_themes/HSB-Collections /usr/share/plymouth/themes/
 
 echo "gtk-theme files.."
+mkdir -p /usr/share/themes
 cp -r ./themes/HSB-Collections /usr/share/themes/
 
 echo "Install grub theme ..."
@@ -36,6 +39,8 @@ update-grub
 echo "Install plymouth theme ..."
 THEME='HSB-Collections'
 INSTALLDIR=/usr/share/plymouth/themes
+apt update
+apt install -y plymouth-themes
 
 printf "Installing '${THEME}' theme..."
 update-alternatives --quiet --install ${INSTALLDIR}/default.plymouth default.plymouth ${INSTALLDIR}/${THEME}/${THEME}.plymouth 100
